@@ -7,7 +7,7 @@ import Contacto from './pages/contacto.jsx';
 import Servicios from './pages/servicios.jsx';
 
 const App = () => {
-  const [view, setView] = useState("inicio"); // Estado para manejar la vista actual
+  const [view, setView] = useState("inicio");
 
   const headerStyle = {
     background: 'linear-gradient(90deg, #fbc2eb, #4c3575)',
@@ -34,7 +34,6 @@ const App = () => {
   const opcionesStyle = { display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '10px' };
   const tagStyle = { background: 'linear-gradient(90deg, #fbc2eb, #4c3575)', color: 'white', padding: '8px 14px', borderRadius: '20px', fontSize: '14px', fontWeight: '500', boxShadow: '0 3px 6px rgba(0,0,0,0.1)' };
 
-  // Función para renderizar la vista actual
   const renderView = () => {
     switch (view) {
       case "login":
@@ -98,6 +97,22 @@ const App = () => {
       <main>
         {renderView()}
       </main>
+
+      {/* ✅ Footer agregado aquí */}
+      <footer
+        style={{
+          background: 'linear-gradient(90deg, #fbc2eb, #4c3575)',
+          color: 'white',
+          padding: '30px 20px',
+          textAlign: 'center',
+          marginTop: '60px'
+        }}
+      >
+        <div style={{ marginBottom: '10px', fontWeight: '500', fontSize: '16px' }}>
+          © {new Date().getFullYear()} Coll Service. Todos los derechos reservados.
+        </div>
+       
+      </footer>
     </div>
   );
 };
