@@ -25,6 +25,7 @@ export default function RegistroEmpleado() {
       cuidadoCanino: false,
     },
     habilidades: "",
+    antecedentes: "", // 👈 AGREGADO
     experiencia: { año: "", mes: "", dia: "" },
     jefeInmediato: {
       nombre: "",
@@ -80,14 +81,18 @@ export default function RegistroEmpleado() {
     }
 
     if (step === 2) {
-      if (form.habilidades.trim().length < 10) newErrors.habilidades = "Describe tus habilidades con al menos 10 caracteres";
-      if (form.experiencia.año === "") newErrors.experienciaAño = "Seleccione años de experiencia";
+      
+     if (form.habilidades.trim().length < 10) newErrors.habilidades = "Describe tus habilidades con al menos 10 caracteres";
+      if (form.antecedentes.trim().length < 5) newErrors.antecedentes = "Indique si tiene o no antecedentes disciplinarios";
+
+     if (form.experiencia.año === "") newErrors.experienciaAño = "Seleccione años de experiencia";
       if (form.experiencia.mes === "") newErrors.experienciaMes = "Seleccione meses de experiencia";
       if (form.experiencia.dia === "") newErrors.experienciaDia = "Seleccione días de experiencia";
       if (form.jefeInmediato.nombre.trim().length < 3) newErrors.nombreJefe = "Mínimo 3 caracteres";
       if (form.jefeInmediato.telefono.trim().length < 10) newErrors.telefonoJefe = "Mínimo 10 caracteres";
       if (!form.jefeInmediato.fechaInicio) newErrors.fechaInicio = "Seleccione fecha de inicio";
       if (!form.jefeInmediato.fechaFin) newErrors.fechaFin = "Seleccione fecha fin";
+      
     }
 
     if (step === 3) {
@@ -261,6 +266,7 @@ export default function RegistroEmpleado() {
                 />
                 {errors.nombre && <small className="error-message">{errors.nombre}</small>}
               </div>
+
               <div className="input-group">
                 <label>Apellido</label>
                 <input
@@ -438,6 +444,18 @@ export default function RegistroEmpleado() {
                 {errors.habilidades && <small className="error-message">{errors.habilidades}</small>}
               </div>
 
+                 <div className="input-group">
+      <label>Antecedentes Disciplinarios</label>
+      <textarea
+        name="antecedentes"
+        value={form.antecedentes}
+        onChange={handleChange}
+        placeholder="Especifique si tiene antecedentes o escriba 'Ninguno'"
+        required
+      />
+      {errors.antecedentes && <small className="error-message">{errors.antecedentes}</small>}
+    </div>
+
               <div className="inline-group">
                 <div>
                   <label>Años Experiencia</label>
@@ -579,6 +597,9 @@ export default function RegistroEmpleado() {
               </div>
             </>
           )}
+
+
+
 
           {step === 3 && (
             <>
